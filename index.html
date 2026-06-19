@@ -425,7 +425,13 @@
     }
     .golf-layout {
       max-width: 1100px; margin: 0 auto; padding: 0 28px;
-      display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;
+      display: grid; grid-template-columns: 1fr 360px; gap: 60px; align-items: center;
+    }
+    .golf-photo-wrap { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .golf-photo-wrap img {
+      width: 100%; border-radius: 10px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      display: block;
     }
     .golf-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -546,7 +552,7 @@
       <!-- aside -->
       <div class="profile-aside reveal">
         <div class="profile-card-img">
-          <img src="./images/yabe1.jpg" alt="矢部広重"
+          <img src="./images/YABE01.png" alt="矢部広重"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
           <div class="photo-fallback" style="display:none;">
             <div class="profile-avatar">👤</div>
@@ -623,12 +629,12 @@
   <div class="container">
     <div class="photo-strip reveal">
       <div class="photo-strip-item" style="aspect-ratio:4/3;">
-        <img src="./images/yabe-qm.jpg" alt="矢部広重 Quality Management"
+        <img src="./images/YABE05.png" alt="矢部広重 Quality Management"
              onerror="this.parentElement.style.background='linear-gradient(145deg,#0D1F3C,#1A3A6B)'; this.style.display='none'">
         <div class="photo-caption">株式会社クオリティマネジメント オフィスにて</div>
       </div>
       <div class="photo-strip-item" style="aspect-ratio:4/3;">
-        <img src="./images/yabe1.jpg" alt="矢部広重"
+        <img src="./images/YABE02.png" alt="矢部広重"
              onerror="this.parentElement.style.background='linear-gradient(145deg,#0D1F3C,#1A3A6B)'; this.style.display='none'">
         <div class="photo-caption">矢部広重 — 喜びと感動の経営革命</div>
       </div>
@@ -641,7 +647,7 @@
   <div class="container">
     <div class="clinton-layout">
       <div class="clinton-photo reveal">
-        <img src="./images/yabe-clinton.jpg" alt="矢部広重 × ビル・クリントン大統領"
+        <img src="./images/YABE03.png" alt="矢部広重 × ビル・クリントン大統領"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
         <div class="photo-fallback-clinton" style="display:none;">🤝</div>
       </div>
@@ -837,10 +843,14 @@
         矢部広重氏はゴルフ研究においても独自の探求心を発揮。長年にわたる科学的アプローチにより、ゴルファー最高の夢である「エージシュート」を達成。経営への向き合い方と同じく、「仕組み化と反復」によって不可能を可能にする姿勢を体現している。
       </p>
     </div>
-    <div class="golf-badge reveal d1">
-      <div class="golf-badge-icon">🏌️</div>
-      <span class="golf-badge-main">エージシュート達成</span>
-      <div class="golf-badge-sub">自分の年齢以下のスコアで<br>18ホールを回る快挙</div>
+    <div class="golf-photo-wrap reveal d1">
+      <img src="./images/YABE04.png" alt="矢部広重 ゴルフ 富士山"
+           onerror="this.style.display='none'">
+      <div class="golf-badge">
+        <div class="golf-badge-icon">🏌️</div>
+        <span class="golf-badge-main">エージシュート達成</span>
+        <div class="golf-badge-sub">自分の年齢以下のスコアで<br>18ホールを回る快挙</div>
+      </div>
     </div>
   </div>
 </section>
