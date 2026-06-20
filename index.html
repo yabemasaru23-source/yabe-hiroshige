@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>矢部広重 オフィシャルサイト | 喜びと感動の経営革命</title>
+  <title>矢部廣重 オフィシャルサイト | 喜びと感動の経営革命</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -384,7 +384,7 @@
     /* ===== BOOKS ===== */
     .books-sec { background: var(--cream); }
     .books-grid {
-      display: grid; grid-template-columns: repeat(5,1fr); gap: 20px; margin-top: 52px;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px;
     }
     .book-card {
       display: flex; flex-direction: column;
@@ -483,6 +483,74 @@
       .books-grid { grid-template-columns: repeat(2,1fr); }
       .hero-stats { gap: 28px; }
     }
+
+    /* ===== READING PREVIEW ===== */
+    .reading-sec { background: var(--cream); }
+    .reading-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 52px;
+    }
+    .reading-card {
+      background: var(--white); border-radius: 8px;
+      box-shadow: 0 4px 20px var(--shadow);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .reading-card:hover { box-shadow: 0 8px 36px var(--shadow-lg); transform: translateY(-4px); }
+    .reading-card-head {
+      background: linear-gradient(140deg, var(--navy), var(--navy-mid));
+      padding: 22px 24px;
+    }
+    .reading-chapter {
+      font-size: 0.62rem; letter-spacing: 0.14em; color: var(--gold);
+      font-weight: 700; margin-bottom: 8px;
+    }
+    .reading-card-head h3 { font-family: 'Noto Serif JP', serif; font-size: 0.98rem; color: var(--white); line-height: 1.6; }
+    .reading-excerpt {
+      padding: 18px 22px; flex: 1;
+      font-size: 0.82rem; color: var(--text-mid); line-height: 1.95;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .reading-excerpt > div { margin-bottom: 6px; }
+    .reading-excerpt .sp { color: var(--navy); font-weight: 700; }
+    .reading-btn {
+      display: block; width: 100%; padding: 14px;
+      background: none; border: none; cursor: pointer;
+      color: var(--gold); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.06em; text-align: center; transition: background 0.2s;
+    }
+    .reading-btn:hover { background: rgba(200,168,75,0.07); }
+    .reading-btn::after { content: ' ›'; }
+    /* Modal */
+    .modal { display: none; position: fixed; inset: 0; z-index: 2000; align-items: center; justify-content: center; }
+    .modal.open { display: flex; }
+    .modal-overlay { position: absolute; inset: 0; background: rgba(6,15,30,0.78); backdrop-filter: blur(4px); }
+    .modal-box {
+      position: relative; z-index: 1;
+      background: var(--white); border-radius: 10px;
+      max-width: 680px; width: 92%; max-height: 82vh;
+      overflow: hidden; display: flex; flex-direction: column;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+    }
+    .modal-head {
+      background: linear-gradient(140deg, var(--navy), var(--navy-mid));
+      padding: 22px 28px;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+    }
+    .modal-head h3 { font-family: 'Noto Serif JP', serif; font-size: 1.05rem; color: var(--white); line-height: 1.55; }
+    .modal-close {
+      background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+      color: var(--white); font-size: 1rem; width: 30px; height: 30px;
+      border-radius: 50%; flex-shrink: 0; transition: background 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.24); }
+    .modal-body { padding: 26px 28px; overflow-y: auto; font-size: 0.86rem; color: var(--text-mid); line-height: 2; }
+    .dl-row { display: flex; gap: 10px; margin-bottom: 8px; }
+    .dl-speaker { color: var(--navy); font-weight: 700; min-width: 72px; flex-shrink: 0; }
+    .dl-speaker.gold { color: var(--gold); min-width: 58px; }
+    .dl-text { flex: 1; }
+    .dl-thought { color: var(--text-light); font-style: italic; padding-left: 82px; margin-bottom: 8px; font-size: 0.8rem; }
+    .modal-body h4 { font-family: 'Noto Serif JP', serif; color: var(--navy); margin: 18px 0 10px; font-size: 0.9rem; }
+    @media (max-width: 800px) { .reading-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -490,13 +558,14 @@
 <!-- HEADER -->
 <header class="header" id="header">
   <div class="header-inner">
-    <div class="logo">矢部広重 <em>|</em> 喜びと感動の経営革命</div>
+    <div class="logo">矢部廣重 <em>|</em> 喜びと感動の経営革命</div>
     <nav>
       <ul>
         <li><a href="#profile">プロフィール</a></li>
         <li><a href="#method">メソッド</a></li>
         <li><a href="#training">実績・研修</a></li>
         <li><a href="#books">著書</a></li>
+        <li><a href="#reading">立ち読み</a></li>
       </ul>
     </nav>
     <button class="burger" id="burger" aria-label="メニュー">
@@ -552,7 +621,7 @@
       <!-- aside -->
       <div class="profile-aside reveal">
         <div class="profile-card-img">
-          <img src="./images/YABE01.png" alt="矢部広重"
+          <img src="./images/YABE01.png" alt="矢部廣重"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
           <div class="photo-fallback" style="display:none;">
             <div class="profile-avatar">👤</div>
@@ -629,14 +698,14 @@
   <div class="container">
     <div class="photo-strip reveal">
       <div class="photo-strip-item" style="aspect-ratio:4/3;">
-        <img src="./images/YABE05.png" alt="矢部広重 Quality Management"
+        <img src="./images/YABE05.png" alt="矢部廣重 Quality Management"
              onerror="this.parentElement.style.background='linear-gradient(145deg,#0D1F3C,#1A3A6B)'; this.style.display='none'">
         <div class="photo-caption">株式会社クオリティマネジメント オフィスにて</div>
       </div>
       <div class="photo-strip-item" style="aspect-ratio:4/3;">
-        <img src="./images/YABE02.png" alt="矢部広重"
+        <img src="./images/YABE02.png" alt="矢部廣重"
              onerror="this.parentElement.style.background='linear-gradient(145deg,#0D1F3C,#1A3A6B)'; this.style.display='none'">
-        <div class="photo-caption">矢部広重 — 喜びと感動の経営革命</div>
+        <div class="photo-caption">矢部廣重 — 喜びと感動の経営革命</div>
       </div>
     </div>
   </div>
@@ -647,7 +716,7 @@
   <div class="container">
     <div class="clinton-layout">
       <div class="clinton-photo reveal">
-        <img src="./images/YABE03.png" alt="矢部広重 × ビル・クリントン大統領"
+        <img src="./images/YABE03.png" alt="矢部廣重 × ビル・クリントン大統領"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
         <div class="photo-fallback-clinton" style="display:none;">🤝</div>
       </div>
@@ -657,7 +726,7 @@
           米国トップリーダーとの<br>深いつながりが示す、<br>グローバルな視野
         </h2>
         <p class="clinton-text">
-          ビル・クリントン第42代米国大統領との交流に象徴されるように、矢部広重氏のビジネスモデルは日本国内にとどまらない。テキサスインスツルメント・バクスター社での20数年にわたる米国優良企業でのマネジメント体験が、「世界最先端」と称される経営手法の礎となっている。
+          ビル・クリントン第42代米国大統領との交流に象徴されるように、矢部廣重氏のビジネスモデルは日本国内にとどまらない。テキサスインスツルメント・バクスター社での20数年にわたる米国優良企業でのマネジメント体験が、「世界最先端」と称される経営手法の礎となっている。
         </p>
         <div style="margin-top:28px; display:flex; gap:32px; flex-wrap:wrap;">
           <div>
@@ -679,7 +748,7 @@
   <div class="container">
     <div class="reveal">
       <span class="eyebrow" style="color:var(--gold);border-color:var(--gold)">Method</span>
-      <h2 class="stitle" style="color:var(--white)">矢部広重が提唱する<br>３つのメソッド</h2>
+      <h2 class="stitle" style="color:var(--white)">矢部廣重が提唱する<br>３つのメソッド</h2>
       <p class="slead" style="color:rgba(255,255,255,0.62)">
         商品力や企画力だけに頼らない、人間洞察から生まれた「感動の経営」を実現するための核心。
       </p>
@@ -757,12 +826,7 @@
       <!-- Book 1 -->
       <div class="book-card reveal d1">
         <div class="book-cover">
-          <div class="book-placeholder">
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-title">最強営業軍団<br>営業幹部の<br>実戦セールス革命</p>
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-author">矢部 廣重</p>
-          </div>
+          <img src="./images/SAIKYO.png" alt="最強営業軍団 営業幹部の実戦セールス革命" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="book-info">
           <p>最強営業軍団 営業幹部の実戦セールス革命</p>
@@ -770,62 +834,58 @@
         </div>
       </div>
 
-      <!-- Book 2（Amazon画像 + fallback） -->
+      <!-- Book 2 -->
       <div class="book-card reveal d2">
-        <div class="book-cover" id="book2cover">
-          <img src="https://images-na.ssl-images-amazon.com/images/P/4837803822.09.LZZZZZZZ.jpg"
-               alt="狙ったお客の80%は落とせる"
-               style="width:100%;height:100%;object-fit:cover;"
-               onerror="document.getElementById('book2cover').innerHTML='<div class=\'book-placeholder\'><div class=\'book-ph-deco\'></div><p class=\'book-ph-title\'>狙ったお客の<br>80%は落とせる</p><div class=\'book-ph-deco\'></div><p class=\'book-ph-author\'>矢部 廣重</p></div>'">
+        <div class="book-cover">
+          <img src="./images/80.png" alt="狙ったお客の80%は落とせる" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="book-info">
           <p>狙ったお客の80%は落とせる</p>
-          <small>1000名の経営トップが実践した驚異の実績</small>
+          <small>マネジメント社</small>
         </div>
       </div>
 
       <!-- Book 3 -->
       <div class="book-card reveal d3">
         <div class="book-cover">
-          <div class="book-placeholder">
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-title">これならできる<br>営業幹部の<br>TQC</p>
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-author">矢部 廣重</p>
-          </div>
+          <img src="./images/tqc.png" alt="これならできる営業幹部のTQC" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="book-info">
           <p>これならできる営業幹部のTQC</p>
+          <small>プレジデント社</small>
         </div>
       </div>
 
       <!-- Book 4 -->
       <div class="book-card reveal d4">
         <div class="book-cover">
-          <div class="book-placeholder">
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-title">これならできる<br>経営幹部の<br>TQC</p>
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-author">矢部 廣重</p>
-          </div>
+          <img src="./images/TQC_KANBU.png" alt="これならできる経営幹部のTQC" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="book-info">
           <p>これならできる経営幹部のTQC</p>
+          <small>プレジデント社</small>
         </div>
       </div>
 
       <!-- Book 5 -->
       <div class="book-card reveal d1">
         <div class="book-cover">
-          <div class="book-placeholder">
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-title">お客様が絶句する<br>究極の経営<br>5つの超戦略</p>
-            <div class="book-ph-deco"></div>
-            <p class="book-ph-author">矢部 廣重</p>
-          </div>
+          <img src="./images/5SENRYAKU.png" alt="お客様が絶句する究極の経営5つの超戦略" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <div class="book-info">
           <p>お客様が絶句する究極の経営5つの超戦略</p>
+          <small>マネジメント社</small>
+        </div>
+      </div>
+
+      <!-- Book 6 -->
+      <div class="book-card reveal d2">
+        <div class="book-cover">
+          <img src="./images/05.png" alt="営業の99%がやっていない本当に大切なこと" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div class="book-info">
+          <p>営業の99%がやっていない本当に大切なこと！？</p>
+          <small>4000人が残した驚異の売り上げ実績</small>
         </div>
       </div>
 
@@ -840,11 +900,11 @@
       <div class="golf-eyebrow">⛳ Hobby &amp; Passion</div>
       <h2 class="golf-title">探求心は、ゴルフでも<br>世界の頂点を目指す</h2>
       <p class="golf-text">
-        矢部広重氏はゴルフ研究においても独自の探求心を発揮。長年にわたる科学的アプローチにより、ゴルファー最高の夢である「エージシュート」を達成。経営への向き合い方と同じく、「仕組み化と反復」によって不可能を可能にする姿勢を体現している。
+        矢部廣重氏はゴルフ研究においても独自の探求心を発揮。長年にわたる科学的アプローチにより、ゴルファー最高の夢である「エージシュート」を達成。経営への向き合い方と同じく、「仕組み化と反復」によって不可能を可能にする姿勢を体現している。
       </p>
     </div>
     <div class="golf-photo-wrap reveal d1">
-      <img src="./images/YABE04.png" alt="矢部広重 ゴルフ 富士山"
+      <img src="./images/YABE04.png" alt="矢部廣重 ゴルフ 富士山"
            onerror="this.style.display='none'">
       <div class="golf-badge">
         <div class="golf-badge-icon">🏌️</div>
@@ -855,9 +915,148 @@
   </div>
 </section>
 
+<!-- READING PREVIEW -->
+<section class="reading-sec sec" id="reading">
+  <div class="container">
+    <div class="reveal">
+      <span class="eyebrow">Book Preview</span>
+      <h2 class="stitle">立ち読みコーナー</h2>
+      <p class="slead">矢部廣重の著書から厳選した一節。師匠・積極部長・消極部長の対話が、経営の本質を解き明かします。</p>
+    </div>
+    <div class="reading-grid">
+
+      <div class="reading-card reveal d1">
+        <div class="reading-card-head">
+          <div class="reading-chapter">最強営業軍団 免許皆伝書 ▸ 第１章</div>
+          <h3>肉眼「悩みの世界」<br><small style="font-size:0.8em;opacity:0.72">表面的に見ている間は問題は解決しない</small></h3>
+        </div>
+        <div class="reading-excerpt">
+          <div><span class="sp">積極部長</span>「業績を上げるいいノウハウを教えていただけませんでしょうか」</div>
+          <div><span class="sp">師匠</span>「真の原因は『眼』にあるのじゃ。物の見方……つまり<strong>眼力</strong>に問題があるのじゃ」</div>
+          <div><span class="sp">消極部長</span>「眼ですって？」</div>
+        </div>
+        <button class="reading-btn" onclick="openModal('modal-ch1')">続きを読む</button>
+      </div>
+
+      <div class="reading-card reveal d2">
+        <div class="reading-card-head">
+          <div class="reading-chapter">最強営業軍団 免許皆伝書 ▸ 第５章</div>
+          <h3>開眼「顧客第一主義」<br><small style="font-size:0.8em;opacity:0.72">営業幹部が気づいていない衝撃の真実</small></h3>
+        </div>
+        <div class="reading-excerpt">
+          <div><span class="sp">師匠</span>「驚くべきことに、<strong>営業幹部が顧客第一主義を分かっていないのじゃ</strong>」</div>
+          <div><span class="sp">消極部長</span>「何ですって？ 我々が知らない？」</div>
+          <div><span class="sp">師匠</span>「一生懸命やっても、ライバルが上であれば負けていることになる」</div>
+        </div>
+        <button class="reading-btn" onclick="openModal('modal-ch5')">続きを読む</button>
+      </div>
+
+      <div class="reading-card reveal d3">
+        <div class="reading-card-head">
+          <div class="reading-chapter">最強営業軍団 免許皆伝書 ▸ 全体構成</div>
+          <h3>１２の眼力 — 免許皆伝への道<br><small style="font-size:0.8em;opacity:0.72">セールス革命の全体像</small></h3>
+        </div>
+        <div class="reading-excerpt">
+          <div>第１章 <strong>肉眼</strong>「悩みの世界」</div>
+          <div>第２章 <strong>眼力</strong>「考える世界」</div>
+          <div>第３章 <strong>洞察眼</strong>「わかっちゃった世界」</div>
+          <div>第４章 <strong>独眼</strong>「否定語の達人」… 全12章</div>
+        </div>
+        <button class="reading-btn" onclick="openModal('modal-index')">全目次を見る</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MODAL: 第1章 -->
+<div class="modal" id="modal-ch1">
+  <div class="modal-overlay" onclick="closeModal('modal-ch1')"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>第１章　肉眼「悩みの世界」<br><small style="font-size:0.8em;opacity:0.75">最強営業軍団 免許皆伝書</small></h3>
+      <button class="modal-close" onclick="closeModal('modal-ch1')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="dl-row"><span class="dl-speaker">積極部長</span><span class="dl-text">「業績を上げるいいノウハウを教えていただけませんでしょうか」</span></div>
+      <div class="dl-thought">消極部長（そんなことを聞いても無駄だよ……そんなのあるはずがない……）</div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「君たちは営業をどのくらい経験しているのかな？」</span></div>
+      <div class="dl-row"><span class="dl-speaker">積極部長</span><span class="dl-text">「私は２２年です……」</span></div>
+      <div class="dl-row"><span class="dl-speaker">消極部長</span><span class="dl-text">「１８年とちょっとです……」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「経歴は十分じゃのう。セールスの免許皆伝の腕前になっていていい年頃じゃ」</span></div>
+      <div class="dl-thought">積極部長（免許皆伝？　そんなのがあるのだろうか。面白そうだ……）</div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「業績が上がらない阻害要因は何じゃろうか？」</span></div>
+      <div class="dl-row"><span class="dl-speaker">積極部長</span><span class="dl-text">「問題がありすぎて困っています……」</span></div>
+      <div class="dl-row"><span class="dl-speaker">消極部長</span><span class="dl-text">「わが社の問題は……「商品力で負けている」につきますね……」</span></div>
+      <div class="dl-thought">消極部長（どんなに営業が頑張っても無理。いつも商品で負けている……営業の責任ではない！）</div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「なぜ重要な問題がずーと解決されないのじゃ？」</span></div>
+      <h4>── 沈黙のあと ──</h4>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「真の原因は『眼』にあるのじゃ……」</span></div>
+      <div class="dl-row"><span class="dl-speaker">消極部長</span><span class="dl-text">「眼ですって？」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「物の見方……つまり<strong>眼力</strong>に問題があるのじゃ……」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「表面的に見るか……深層的に見るかで大きく答えが異なる」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「部分的に見るか……全体的に見るか。短期的に見るか……中長期的に見るか」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「<strong>肉眼で見ている間は……問題は解決しない</strong>」</span></div>
+      <div class="dl-thought">積極部長（師匠のおっしゃるとおりだ。長年同じことで悩むことは意味がない）</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: 第5章 -->
+<div class="modal" id="modal-ch5">
+  <div class="modal-overlay" onclick="closeModal('modal-ch5')"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>第５章　開眼「顧客第一主義」<br><small style="font-size:0.8em;opacity:0.75">最強営業軍団 免許皆伝書</small></h3>
+      <button class="modal-close" onclick="closeModal('modal-ch5')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「企業経営の中で一番重要なのは経営理念である」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「経営理念の中で最も大切なのが顧客第一主義だ。これは誰でも知っている基本中の基本である」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「しかし驚くべきことに、<strong>営業幹部が分かっていないのじゃ</strong>」</span></div>
+      <div class="dl-thought">否定部長（何ですって？　我々が顧客第一主義を知らない？　冗談を言うのは止めてもらいたい……）</div>
+      <div class="dl-row"><span class="dl-speaker">否定部長</span><span class="dl-text">「師匠のお言葉ですが、絶対に我々は納得できません。根拠を見せてください」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「それでは聞くが……顧客第一主義とは何かね。教えて欲しい」</span></div>
+      <div class="dl-row"><span class="dl-speaker">否定部長</span><span class="dl-text">「お客様に喜ばれる商品とサービスを提供することです！」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「お客様は……『喜んで』いるのかね？」</span></div>
+      <div class="dl-row"><span class="dl-speaker">否定部長</span><span class="dl-text">「勿論ですよ」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「そんなに喜ばれているのに、なぜ業績が上がらないのかね？」</span></div>
+      <div class="dl-thought">否定部長（喜ばれているのと業績とは、簡単には結びつかないのが営業の世界だ……）</div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「お客様の評価基準を見抜くことだ。四つの基準で考えるといい」</span></div>
+      <div class="dl-row"><span class="dl-speaker">師匠</span><span class="dl-text">「① そんなサービスでは……ダメだ<br>② そんなのは……当たり前サービスよ<br>③ 一味違うね……ライバルよりいい内容だ<br>④ マイッタ！……ライバルは考えつかないね」</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: 目次 -->
+<div class="modal" id="modal-index">
+  <div class="modal-overlay" onclick="closeModal('modal-index')"></div>
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>最強営業軍団 免許皆伝書<br><small style="font-size:0.8em;opacity:0.75">１２の眼力 — セールス革命への道</small></h3>
+      <button class="modal-close" onclick="closeModal('modal-index')">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:18px;">「眼力」を段階的に磨き上げ、免許皆伝の境地へ至る全12章。</p>
+      <div class="dl-row"><span class="dl-speaker gold">第１章</span><span class="dl-text"><strong>肉眼</strong>「悩みの世界」— 表面的な見方からの出発</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第２章</span><span class="dl-text"><strong>眼力</strong>「考える世界」— 浅い見方から深い見方へ</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第３章</span><span class="dl-text"><strong>洞察眼</strong>「わかっちゃった世界」— 見えない領域を察する</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第４章</span><span class="dl-text"><strong>独眼</strong>「否定語の達人」— 独自の見方を編み出す</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第５章</span><span class="dl-text"><strong>慧眼</strong>「営業部門の生産性」— 本質を見抜く眼</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第６章</span><span class="dl-text"><strong>開眼</strong>「顧客第一主義」— 覚りの境地への扉</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第７章</span><span class="dl-text"><strong>心眼</strong>「仕事変革３０％」— 心の目で見る世界</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第８章</span><span class="dl-text"><strong>慈愛眼</strong>「部下指導の急所」— 慈しみ包み込む大きな心</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第９章</span><span class="dl-text"><strong>先見眼</strong>「売上目標額」— 先を読む力</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第１０章</span><span class="dl-text"><strong>戦略眼</strong>「必殺技」— 戦わずして勝つ世界</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第１１章</span><span class="dl-text"><strong>感動眼</strong>「必勝の方程式」— 喜びと感動のアンテナ</span></div>
+      <div class="dl-row"><span class="dl-speaker gold">第１２章</span><span class="dl-text"><strong>自在眼</strong>「セールス革命の道」— 免許皆伝・360度の視野</span></div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-logo">矢部広重 <em>|</em> 喜びと感動の経営革命</div>
+  <div class="footer-logo">矢部廣重 <em>|</em> 喜びと感動の経営革命</div>
   <p class="footer-copy">© Quality Management Co., Ltd. All Rights Reserved.</p>
 </footer>
 
@@ -881,6 +1080,13 @@
   // Hero immediate reveal
   document.querySelectorAll('.hero .reveal').forEach((el, i) => {
     setTimeout(() => el.classList.add('visible'), 250 + i * 160);
+  });
+
+  // Modal
+  function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.modal.open').forEach(m => { m.classList.remove('open'); document.body.style.overflow = ''; });
   });
 </script>
 </body>
